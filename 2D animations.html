@@ -1,0 +1,493 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="referrer" content="strict-origin-when-cross-origin">
+		<title>Ishoo Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Animation Grid Styling - Max 3 items per row */
+			.animation-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5rem;
+				margin-top: 2rem;
+			}
+
+			/* Responsive adjustment for tablets */
+			@media screen and (max-width: 980px) {
+				.animation-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			/* Responsive adjustment for mobile phones */
+			@media screen and (max-width: 480px) {
+				.animation-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.animation-card {
+				position: relative;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+				cursor: pointer;
+				background-color: #000;
+				aspect-ratio: 16 / 9;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+
+			.animation-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+			}
+
+			.animation-card video {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+
+			.animation-card .overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+				color: #fff;
+				display: flex;
+				align-items: flex-end;
+				padding: 1.25rem;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				pointer-events: none;
+			}
+
+			.animation-card:hover .overlay {
+				opacity: 1;
+			}
+
+			.animation-card .overlay h3 {
+				color: #ffffff;
+				margin: 0;
+				font-size: 1.2rem;
+				font-weight: 600;
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+			}
+
+			/* Modal Lightbox for Zoomed Video and Blurred Background */
+			.video-modal {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: rgba(0, 0, 0, 0.6);
+				backdrop-filter: blur(12px);
+				-webkit-backdrop-filter: blur(12px);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				z-index: 10000;
+				opacity: 0;
+				pointer-events: none;
+				transition: opacity 0.3s ease;
+			}
+
+			.video-modal.active {
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+			.video-modal-content {
+				position: relative;
+				width: 90%;
+				max-width: 1100px;
+				transform: scale(0.8);
+				transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+
+			.video-modal.active .video-modal-content {
+				transform: scale(1);
+			}
+
+			.video-modal-content video {
+				width: 100%;
+				max-height: 80vh;
+				border-radius: 8px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+				outline: none;
+				background: #000;
+			}
+
+			.video-modal-title {
+				color: #ffffff;
+				font-size: 1.5rem;
+				margin-top: 1rem;
+				text-align: center;
+			}
+
+			.video-modal-close {
+				position: absolute;
+				top: -40px;
+				right: 0;
+				color: #ffffff;
+				font-size: 2rem;
+				cursor: pointer;
+				line-height: 1;
+				transition: color 0.2s ease;
+			}
+
+			.video-modal-close:hover {
+				color: #f56a6a;
+			}
+
+			/* Portfolio Image Hover Blur and Title Overlay Styling */
+			.posts article .image {
+				position: relative;
+				overflow: hidden;
+				display: block;
+			}
+			.posts article .image img {
+				transition: filter 0.3s ease, transform 0.3s ease;
+				display: block;
+				width: 100%;
+			}
+			.posts article .image .portfolio-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(100, 100, 100, 0.4);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				z-index: 2;
+			}
+			.posts article .image .portfolio-overlay span {
+				color: #ffffff;
+				font-size: 1.5rem;
+				font-weight: 700;
+				text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+				padding: 0 1rem;
+				text-align: center;
+			}
+			.posts article .image:hover img {
+				filter: blur(6px) grayscale(50%);
+			}
+			.posts article .image:hover .portfolio-overlay {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Portfolio</strong></a>
+									<ul class="icons">
+										<li><a href="https://x.com/Ishhues" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.instagram.com/_ishhues/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="https://www.linkedin.com/in/ismael-houfaf-257041257/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									</ul>
+								</header>
+
+							<!-- My Animations Section -->
+							<section id="my-animations">
+								<header class="major">
+									<h1>My Animations</h1>
+								</header>
+
+								<div class="animation-grid">
+									<!-- Animation Item 1 -->
+									<div class="animation-card" onclick="openVideoModal('Backroll Animation Blocking (CSP).mp4', 'Backroll Animation Blocking (CSP)')">
+										<video src="Backroll Animation Blocking (CSP).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Backroll Animation Blocking (2025) </h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 2 -->
+									<div class="animation-card" onclick="openVideoModal('Hammer Practise (CSP).mp4', 'Hammer Practise (CSP)')">
+										<video src="Hammer Practise (CSP).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Hammer Practice (2025)</h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 3 -->
+									<div class="animation-card" onclick="openVideoModal('Invincible (CSP).mp4', 'Invincible (CSP)')">
+										<video src="Invincible (CSP).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Invincible (2025)</h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 4 -->
+									<div class="animation-card" onclick="openVideoModal('Cup Jumping (Toon Boom Harmony).mp4', 'Cup Jumping (Toon Boom Harmony)')">
+										<video src="Cup Jumping (Toon Boom Harmony).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Cup Jumping (2024)</h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 5 -->
+									<div class="animation-card" onclick="openVideoModal('Backroll Watch Animation Test (CSP).mp4', 'Backroll Watch Animation Test (CSP)')">
+										<video src="Backroll Watch Animation Test (CSP).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Backroll Watch Animation Test (2026)</h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 6 -->
+									<div class="animation-card" onclick="openVideoModal('Spider-Man Animation (CSP).mp4', 'Spider-Man Animation (CSP)')">
+										<video src="Spider-Man Animation (CSP).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Spider-Man Animation (2024)</h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 7 -->
+									<div class="animation-card" onclick="openVideoModal('Greese Pencil Spider-Man (Blender).mp4', 'Greese Pencil Spider-Man (Blender)')">
+										<video src="Greese Pencil Spider-Man (Blender).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Greese Pencil Spider-Man (2025)</h3>
+										</div>
+									</div>
+
+									<!-- Animation Item 8 -->
+									<div class="animation-card" onclick="openVideoModal('Backroll Lion Character Test (CSP).mp4', 'Backroll Lion Character Test (CSP)')">
+										<video src="Backroll Lion Character Test (CSP).mp4" preload="metadata" muted></video>
+										<div class="overlay">
+											<h3>Backroll Lion Character Test (2025)</h3>
+										</div>
+									</div>
+								</div>
+							</section>
+
+							<!-- Portfolio Section -->
+								<section>
+									<header class="major">
+										<h2>Portfolio</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="2D animations.html" class="image">
+												<img src="images/pic01.jpg" alt="" />
+												<div class="portfolio-overlay"><span>2D Animations</span></div>
+											</a>
+											<h3>2D Animations</h3>
+											<ul class="actions">
+												<li><a href="2D animations.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Storyboard.html" class="image">
+												<img src="images/pic02.png" alt="" />
+												<div class="portfolio-overlay"><span>Storyboards</span></div>
+											</a>
+											<h3>Storyboards</h3>
+											<ul class="actions">
+												<li><a href="Storyboard.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Backgrounds.html" class="image">
+												<img src="images/pic03.png" alt="" />
+												<div class="portfolio-overlay"><span>Backgrounds</span></div>
+											</a>
+											<h3>Backgrounds</h3>										
+											<ul class="actions">
+												<li><a href="Backgrounds.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Character Designs.html" class="image">
+												<img src="images/pic04.png" alt="" />
+												<div class="portfolio-overlay"><span>Character Designs</span></div>
+											</a>
+											<h3>Character Designs</h3>						
+											<ul class="actions">
+												<li><a href="Character Designs.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Life Drawing.html" class="image">
+												<img src="images/pic05.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Life Drawing</span></div>
+											</a>
+											<h3>Life Drawing</h3>
+											<ul class="actions">
+												<li><a href="Life Drawing.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Personal Work.html" class="image">
+												<img src="images/pic06.png" alt="" />
+												<div class="portfolio-overlay"><span>Personal Work</span></div>
+											</a>
+											<h3>Personal Work</h3>
+											<ul class="actions">
+												<li><a href="Personal Work.html" class="button">More</a></li>
+											</ul>
+										</article>
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li>
+											<span class="opener">About Me</span>
+											<ul>
+												<li><a href="my personal space.html">My Personal Space</a></li>
+												<li><a href="my cv.html">My CV</a></li>
+											</ul>
+										</li>
+										<li><a href="2D animations.html">2D Animations </a></li>
+										<li><a href="elements.html">Storyboards</a></li>
+										<li><a href="Backgrounds.html">Backgrounds</a></li>
+										<li><a href="Character Designs.html">Character Designs</a></li>
+										<li><a href="Life Drawing.html">Life Drawing</a></li>
+										<li><a href="Personal Work.html">Personal Work</a></li>
+										<li>
+											<span class="opener">Projects</span>
+											<ul>
+												<li><a href="Backroll.html">Backroll</a></li>
+												<li><a href="Knight Fight.html">Knight Fight</a></li>
+												<li><a href="Bed Time Chase.html">Bed Time Chase</a></li>
+												<li><a href="Shakespear In the Club.html">Shakespear In the Club</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Projects</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="Backroll.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<p>Independent 8 episode series aimed at ages 14 and up, about a man running out of time. (2026)</p>
+										</article>
+										<article>
+											<a href="Bed Time Chase.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<p>University Project aimed at ages 6 and up, about an older brother struggling to put his sibling to sleep. (2023)</p>
+										</article>
+										<article>
+											<a href="Knight Fight.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<p>University Project aimed at ages 18 and up, a medieval all out war against the forces of evil. (2023)</p>
+										</article>
+									</div>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>My Contact Details, I am currently looking for work and open to offers. I will get back to you as soon as possible.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">ihoufaf.animation@gmail.com</a></li>
+										<li class="icon solid fa-phone">(+971) 58 998 0694</li>
+										<li class="icon solid fa-home">30 Rue De L'Avenir<br />Clichy, 92110</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Video Modal Lightbox -->
+		<div id="videoModal" class="video-modal" onclick="closeVideoModal(event)">
+			<div class="video-modal-content">
+				<span class="video-modal-close" onclick="closeVideoModal(event, true)">&times;</span>
+				<video id="modalVideo" controls autoplay></video>
+				<div id="modalTitle" class="video-modal-title"></div>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				function openVideoModal(videoSrc, title) {
+					const modal = document.getElementById('videoModal');
+					const modalVideo = document.getElementById('modalVideo');
+					const modalTitle = document.getElementById('modalTitle');
+
+					modalVideo.src = videoSrc;
+					modalTitle.textContent = title;
+					modal.classList.add('active');
+					modalVideo.play();
+				}
+
+				function closeVideoModal(event, forceClose = false) {
+					if (forceClose || event.target.id === 'videoModal') {
+						const modal = document.getElementById('videoModal');
+						const modalVideo = document.getElementById('modalVideo');
+
+						modal.classList.remove('active');
+						modalVideo.pause();
+						modalVideo.src = '';
+					}
+				}
+
+				document.addEventListener('keydown', function(event) {
+					if (event.key === 'Escape') {
+						closeVideoModal(event, true);
+					}
+				});
+			</script>
+
+	</body>
+</html>

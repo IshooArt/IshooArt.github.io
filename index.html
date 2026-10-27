@@ -12,6 +12,47 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Portfolio Image Hover Blur and Title Overlay Styling */
+			.posts article .image {
+				position: relative;
+				overflow: hidden;
+				display: block;
+			}
+			.posts article .image img {
+				transition: filter 0.3s ease, transform 0.3s ease;
+				display: block;
+				width: 100%;
+			}
+			.posts article .image .portfolio-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(100, 100, 100, 0.4);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				z-index: 2;
+			}
+			.posts article .image .portfolio-overlay span {
+				color: #ffffff;
+				font-size: 1.5rem;
+				font-weight: 700;
+				text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+				padding: 0 1rem;
+				text-align: center;
+			}
+			.posts article .image:hover img {
+				filter: blur(6px) grayscale(50%);
+			}
+			.posts article .image:hover .portfolio-overlay {
+				opacity: 1;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -47,50 +88,10 @@
 										</ul>
 									</div>
 									<span class="image object">
-										<img src="images/pic10.jpg" alt="" />
+										<img src="images/pic12.jpg" alt="" />
 									</span>
 								</section>
 
-							<!-- Section 
-								<section>
-									<header class="major">
-										<h2>Erat lacinia</h2>
-									</header>
-									<div class="features">
-										<article>
-											<span class="icon fa-gem"></span>
-											<div class="content">
-												<h3>Portitor ullamcorper</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-paper-plane"></span>
-											<div class="content">
-												<h3>Sapien veroeros</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-rocket"></span>
-											<div class="content">
-												<h3>Quam lorem ipsum</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-										<article>
-											<span class="icon solid fa-signal"></span>
-											<div class="content">
-												<h3>Sed magna finibus</h3>
-												<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-											</div>
-										</article>
-									</div><iframe width="1280" height="720" referrerpolicy='strict-origin-when-cross-origin'
-									src="https://www.youtube.com/embed?v=O1fCssZe3Us">
-								</section>
-								-->
-								
-					<!-- Divider Line Separating Content Above -->
 								<!-- Showreel Section -->
 								<section>
 									<!-- Centered Header with Red Underline -->
@@ -108,6 +109,7 @@
 										</div>
 									</div>
 								</section>
+
 							<!-- Section -->
 								<section>
 									<header class="major">
@@ -115,45 +117,63 @@
 									</header>
 									<div class="posts">
 										<article>
-											<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+											<a href="2D animations.html" class="image">
+												<img src="images/pic01.jpg" alt="" />
+												<div class="portfolio-overlay"><span>2D Animations</span></div>
+											</a>
 											<h3>2D Animations</h3>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="2D animations.html" class="button">More</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+											<a href="Storyboard.html" class="image">
+												<img src="images/pic02.png" alt="" />
+												<div class="portfolio-overlay"><span>Storyboards</span></div>
+											</a>
 											<h3>Storyboards</h3>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="Storyboard.html" class="button">More</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+											<a href="Backgrounds.html" class="image">
+												<img src="images/pic03.png" alt="" />
+												<div class="portfolio-overlay"><span>Backgrounds</span></div>
+											</a>
 											<h3>Backgrounds</h3>										
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="Backgrounds.html" class="button">More</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+											<a href="Character Designs.html" class="image">
+												<img src="images/pic04.png" alt="" />
+												<div class="portfolio-overlay"><span>Character Designs</span></div>
+											</a>
 											<h3>Character Designs</h3>						
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="Character Designs.html" class="button">More</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+											<a href="Life Drawing.html" class="image">
+												<img src="images/pic05.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Life Drawing</span></div>
+											</a>
 											<h3>Life Drawing</h3>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="Life Drawing.html" class="button">More</a></li>
 											</ul>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+											<a href="Personal Work.html" class="image">
+												<img src="images/pic06.png" alt="" />
+												<div class="portfolio-overlay"><span>Personal Work</span></div>
+											</a>
 											<h3>Personal Work</h3>
 											<ul class="actions">
-												<li><a href="#" class="button">More</a></li>
+												<li><a href="Personal Work.html" class="button">More</a></li>
 											</ul>
 										</article>
 									</div>
@@ -183,25 +203,25 @@
 											<span class="opener">About Me</span>
 											<ul>
 												<li><a href="my personal space.html">My Personal Space</a></li>
-												<li><a href="#">My Certifications</a></li>
 												<li><a href="my cv.html">My CV</a></li>
 											</ul>
 										</li>
-										<li><a href="generic.html">2D Animations </a></li>
+										<li><a href="2D animations.html">2D Animations </a></li>
 										<li><a href="elements.html">Storyboards</a></li>
-										<li><a href="#">Backgrounds</a></li>
-										<li><a href="#">Character Designs</a></li>
-										<li><a href="#">Life Drawing</a></li>
-										<li><a href="#">Personal Work</a></li>
+										<li><a href="Backgrounds.html">Backgrounds</a></li>
+										<li><a href="Character Designs.html">Character Designs</a></li>
+										<li><a href="Life Drawing.html">Life Drawing</a></li>
+										<li><a href="Personal Work.html">Personal Work</a></li>
 										<li>
 											<span class="opener">Projects</span>
 											<ul>
-												<li><a href="#">Backroll</a></li>
-												<li><a href="#">Knight Fight</a></li>
-												<li><a href="#">Bed Time Chase</a></li>
-												<li><a href="#">Shakespear In The Club</a></li>
+												<li><a href="Backroll.html">Backroll</a></li>
+												<li><a href="Knight Fight.html">Knight Fight</a></li>
+												<li><a href="Bed Time Chase.html">Bed Time Chase</a></li>
+												<li><a href="Shakespear In the Club.html">Shakespear In the Club</a></li>
 											</ul>
 										</li>
+									</ul>
 								</nav>
 
 							<!-- Section -->
@@ -211,19 +231,18 @@
 									</header>
 									<div class="mini-posts">
 										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a href="Backroll.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
 											<p>Independent 8 episode series aimed at ages 14 and up, about a man running out of time. (2026)</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<a href="Bed Time Chase.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
 											<p>University Project aimed at ages 6 and up, about an older brother struggling to put his sibling to sleep. (2023)</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<a href="Knight Fight.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
 											<p>University Project aimed at ages 18 and up, a medieval all out war against the forces of evil. (2023)</p>
 										</article>
 									</div>
-									
 								</section>
 
 							<!-- Section -->
@@ -259,3 +278,5 @@
 
 	</body>
 </html>
+
+```
