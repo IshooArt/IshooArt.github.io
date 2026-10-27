@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="referrer" content="strict-origin-when-cross-origin">
+		<title>Ishoo Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			/* Portfolio Image Hover Blur and Title Overlay Styling */
+			.posts article .image {
+				position: relative;
+				overflow: hidden;
+				display: block;
+			}
+			.posts article .image img {
+				transition: filter 0.3s ease, transform 0.3s ease;
+				display: block;
+				width: 100%;
+			}
+			.posts article .image .portfolio-overlay {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(100, 100, 100, 0.4);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				z-index: 2;
+			}
+			.posts article .image .portfolio-overlay span {
+				color: #ffffff;
+				font-size: 1.5rem;
+				font-weight: 700;
+				text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+				padding: 0 1rem;
+				text-align: center;
+			}
+			.posts article .image:hover img {
+				filter: blur(6px) grayscale(50%);
+			}
+			.posts article .image:hover .portfolio-overlay {
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Portfolio</strong></a>
+									<ul class="icons">
+										<li><a href="https://x.com/Ishhues" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+										<li><a href="https://www.instagram.com/_ishhues/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+										<li><a href="https://www.linkedin.com/in/ismael-houfaf-257041257/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									</ul>
+								</header>
+
+							<!-- Personal Space -->
+							<section id="personal-space">
+								<header class="major">
+									<h1>My Personal Space</h1>
+								</header>
+
+								<style>
+									#personal-space .personal-photo {
+										float: right;
+										width: 36%;
+										max-width: 360px;
+										height: auto;
+										margin: 0.35em 0 1.5em 2em;
+										border-radius: 4px;
+									}
+									#personal-space p {
+										text-align: left;
+									}
+									#personal-space::after {
+										content: "";
+										display: block;
+										clear: both;
+									}
+									@media screen and (max-width: 736px) {
+										#personal-space .personal-photo {
+											width: 45%;
+											margin-left: 1em;
+										}
+									}
+								</style>
+
+								<img class="personal-photo" src="images/pic10.jpg" alt="Portrait of Ismael" />
+
+								<p>My name is Ismael Houfaf, I’m 22 years old, and I’m an aspiring animator with a lifelong dream of bringing characters and stories to life. My passion began as a child, reading comic books and imagining what it would be like if the characters could move beyond the pages. That same sense of wonder still inspires me today, reminding me why I fell in love with animation in the first place.</p>
+
+								<p>I was born and raised in France before moving to the United Arab Emirates, where I explored my artistic interests through fine arts and developed my English skills. This opened the door to continuing my education in the United Kingdom, where I earned a bachelor’s degree in Animation at Staffordshire University. Exploring every stage of the animation pipeline helped me discover my passion for character animation, while group projects taught me the importance of teamwork and collaboration.</p>
+
+								<p>I later completed a master’s degree in 2D Animation at the University of Hertfordshire, where I had the opportunity to focus on my own creative projects. Leading my original project, <em>Backroll</em>, challenged me to grow as both an artist and a storyteller, pushing me to explore new ideas and discover what I am capable of creating.</p>
+
+								<p>Although I have come a long way, I know this is only the beginning of my journey. There are still countless skills to develop and stories I want to share with the world. No matter the challenges ahead, I will continue to learn, improve, and give my all to every project. Above everything, I never want to lose the childhood wonder that first inspired me to become an animator, because bringing imagination to life is, and always will be, my dream.</p>
+							</section>
+
+														<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Portfolio</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="2D animations.html" class="image">
+												<img src="images/pic01.jpg" alt="" />
+												<div class="portfolio-overlay"><span>2D Animations</span></div>
+											</a>
+											<h3>2D Animations</h3>
+											<ul class="actions">
+												<li><a href="2D animations.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Storyboard.html" class="image">
+												<img src="images/pic02.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Storyboards</span></div>
+											</a>
+											<h3>Storyboards</h3>
+											<ul class="actions">
+												<li><a href="Storyboard.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Backgrounds.html" class="image">
+												<img src="images/pic03.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Backgrounds</span></div>
+											</a>
+											<h3>Backgrounds</h3>										
+											<ul class="actions">
+												<li><a href="Backgrounds.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Character Designs.html" class="image">
+												<img src="images/pic04.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Character Designs</span></div>
+											</a>
+											<h3>Character Designs</h3>						
+											<ul class="actions">
+												<li><a href="Character Designs.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Life Drawing.html" class="image">
+												<img src="images/pic05.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Life Drawing</span></div>
+											</a>
+											<h3>Life Drawing</h3>
+											<ul class="actions">
+												<li><a href="Life Drawing.html" class="button">More</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="Personal Work.html" class="image">
+												<img src="images/pic06.jpg" alt="" />
+												<div class="portfolio-overlay"><span>Personal Work</span></div>
+											</a>
+											<h3>Personal Work</h3>
+											<ul class="actions">
+												<li><a href="Personal Work.html" class="button">More</a></li>
+											</ul>
+										</article>
+									</div>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li>
+											<span class="opener">About Me</span>
+											<ul>
+												<li><a href="my personal space.html">My Personal Space</a></li>
+												<li><a href="my cv.html">My CV</a></li>
+											</ul>
+										</li>
+										<li><a href="generic.html">2D Animations </a></li>
+										<li><a href="elements.html">Storyboards</a></li>
+										<li><a href="#">Backgrounds</a></li>
+										<li><a href="#">Character Designs</a></li>
+										<li><a href="#">Life Drawing</a></li>
+										<li><a href="#">Personal Work</a></li>
+										<li>
+											<span class="opener">Projects</span>
+											<ul>
+												<li><a href="#">Backroll</a></li>
+												<li><a href="#">Knight Fight</a></li>
+												<li><a href="#">Bed Time Chase</a></li>
+												<li><a href="#">Shakespear In The Club</a></li>
+											</ul>
+										</li>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Projects</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<p>Independent 8 episode series aimed at ages 14 and up, about a man running out of time. (2026)</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<p>University Project aimed at ages 6 and up, about an older brother struggling to put his sibling to sleep. (2023)</p>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<p>University Project aimed at ages 18 and up, a medieval all out war against the forces of evil. (2023)</p>
+										</article>
+									</div>
+									
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<p>My Contact Details, I am currently looking for work and open to offers. I will get back to you as soon as possible.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">ihoufaf.animation@gmail.com</a></li>
+										<li class="icon solid fa-phone">(+971) 58 998 0694</li>
+										<li class="icon solid fa-home">30 Rue De L'Avenir<br />
+										Clichy, 92110</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
