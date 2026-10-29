@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -13,6 +14,103 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+            /* iPhone Photos-inspired moodboard: natural image proportions, never crop */
+            #life-drawing { padding-top: .75rem; }
+            #life-drawing .major { display: block; margin-bottom: .75rem; }
+            #life-drawing .life-drawing-intro { max-width: 760px; margin: 0 auto 1.5rem; text-align: center; line-height: 1.7; }
+
+            /* CSS columns create a masonry layout with images at their natural heights */
+            #life-drawing .drawing-gallery {
+                columns: 3;
+                column-gap: 12px;
+                width: 100%;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            #life-drawing .drawing-card {
+                display: inline-block;
+                width: 100%;
+                margin: 0 0 12px;
+                break-inside: avoid;
+                background: transparent;
+                border-radius: 10px;
+                overflow: visible;
+                box-shadow: none;
+                vertical-align: top;
+            }
+            #life-drawing .drawing-image-button {
+                display: block;
+                width: 100%;
+                height: auto;
+                padding: 0;
+                border: 0;
+                border-radius: 10px;
+                background: transparent;
+                cursor: zoom-in;
+                line-height: 0;
+                overflow: visible;
+            }
+            #life-drawing .drawing-image-button img {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-height: none;
+                object-fit: unset;
+                border-radius: 10px;
+                transition: transform .35s cubic-bezier(.2,.7,.2,1), filter .3s ease;
+            }
+            #life-drawing .drawing-image-button:hover img {
+                transform: scale(1.015);
+                filter: brightness(.96);
+            }
+            #life-drawing .drawing-caption { display: none; }
+            .drawing-lightbox {
+                position: fixed; inset: 0; z-index: 9999;
+                display: flex; align-items: center; justify-content: center;
+                padding: 3.5rem 4.5rem; background: rgba(12,12,14,.96);
+                opacity: 0; visibility: hidden; pointer-events: none;
+                transition: opacity .3s ease, visibility .3s ease;
+            }
+            .drawing-lightbox.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
+            .drawing-lightbox-content {
+                max-width: min(1100px, 94vw); max-height: 90vh;
+                display: flex; flex-direction: column; align-items: center;
+                transform: translateY(12px) scale(.97);
+                transition: transform .35s cubic-bezier(.2,.7,.2,1);
+            }
+            .drawing-lightbox.is-open .drawing-lightbox-content { transform: translateY(0) scale(1); }
+            .drawing-lightbox img {
+                display: block; max-width: 92vw; max-height: 88vh;
+                width: auto; height: auto; object-fit: contain;
+                box-shadow: none;
+            }
+            .drawing-lightbox-caption { display: none; }
+            .drawing-lightbox-close,
+            .drawing-lightbox-nav {
+                position: absolute; display: flex; align-items: center; justify-content: center;
+                border: 0 !important; outline: 0; box-shadow: none !important;
+                background: transparent !important; color: #f56a6a !important;
+                font-family: Arial, sans-serif; font-weight: 300; line-height: 1;
+                cursor: pointer; padding: .25rem; border-radius: 0 !important;
+                transition: color .2s ease, transform .2s ease;
+            }
+            .drawing-lightbox-close {
+                top: 1rem; right: 1.25rem; font-size: 2.6rem;
+                width: 2.5rem; height: 2.5rem;
+            }
+            .drawing-lightbox-nav {
+                top: 50%; transform: translateY(-50%); font-size: 3rem;
+                width: 3rem; height: 4rem;
+            }
+            .drawing-lightbox-prev { left: 1rem; }
+            .drawing-lightbox-next { right: 1rem; }
+            .drawing-lightbox-close:hover,
+            .drawing-lightbox-nav:hover { color: #fff !important; }
+            .drawing-lightbox-prev:hover { transform: translateY(-50%) translateX(-3px); }
+            .drawing-lightbox-next:hover { transform: translateY(-50%) translateX(3px); }
+            .drawing-lightbox-close:focus-visible,
+            .drawing-lightbox-nav:focus-visible { outline: 2px solid #f56a6a !important; outline-offset: 4px; }
+            
 			/* Portfolio Image Hover Blur and Title Overlay Styling */
 			.posts article .image {
 				position: relative;
@@ -52,7 +150,25 @@
 			.posts article .image:hover .portfolio-overlay {
 				opacity: 1;
 			}
-		</style>
+
+            @media screen and (max-width: 980px) {
+                #life-drawing .drawing-gallery { columns: 3; column-gap: 12px; }
+            }
+            @media screen and (max-width: 600px) {
+                #life-drawing .drawing-gallery { columns: 2; column-gap: 12px; }
+                #life-drawing .drawing-card { margin-bottom: 12px; }
+                #life-drawing .drawing-image-button, #life-drawing .drawing-image-button img { border-radius: 7px; }
+                .drawing-lightbox { padding: 3.5rem 2.5rem; }
+                .drawing-lightbox img { max-width: 94vw; max-height: 82vh; }
+                .drawing-lightbox-close { top: .5rem; right: .5rem; font-size: 2.3rem; }
+                .drawing-lightbox-nav { font-size: 2.4rem; width: 2rem; }
+                .drawing-lightbox-prev { left: .2rem; }
+                .drawing-lightbox-next { right: .2rem; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                #life-drawing .drawing-image-button img, .drawing-lightbox, .drawing-lightbox-content { transition: none; }
+            }
+        </style>
 	</head>
 	<body class="is-preload">
 
@@ -73,47 +189,247 @@
 									</ul>
 								</header>
 
-							<!-- Personal Space -->
-							<section id="personal-space">
-								<header class="major">
-									<h1>My Personal Space</h1>
-								</header>
+							<!-- Life Drawing Gallery -->
+                            <section id="life-drawing">
+                                <header class="major">
+                                    <h1>Life Drawing</h1>
+                                </header>
+                                <p class="life-drawing-intro">My life drawings are a daily practice in observing the human figure. I focus on form, gesture and movement, working to capture the structure and energy of each pose with simple, confident lines.</p>
+                                <!-- Replace the image paths below with your own artwork filenames in the images folder.
+                                     Each image keeps its natural proportions, so portrait and landscape pieces fit the moodboard naturally. -->
+                                <div class="drawing-gallery">
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Gesture Study 01" data-title="Gesture Study 01" data-description="A quick gesture study focused on capturing the pose, rhythm and movement of the figure.">
+                                            <img src="Life Drawing/IMG_7380.jpg" alt="Life drawing gesture study 1" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Figure Study 02" data-title="Figure Study 02" data-description="A figure study exploring the relationship between body proportions, balance and silhouette.">
+                                            <img src="Life Drawing/IMG_7449.jpg" alt="Life drawing figure study 2" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Anatomy Study 03" data-title="Anatomy Study 03" data-description="A closer observation of anatomy, structure and the forms that give the figure volume.">
+                                            <img src="Life Drawing/IMG_7535.jpg" alt="Life drawing anatomy study 3" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Figure in Motion 04" data-title="Figure in Motion 04" data-description="A movement-focused drawing capturing the energy and flow of a dynamic pose.">
+                                            <img src="Life Drawing/IMG_7536.jpg" alt="Dynamic life drawing pose 4" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Portrait Study 05" data-title="Portrait Study 05" data-description="A study of the head and upper body, with attention to shape, expression and detail.">
+                                            <img src="Life Drawing/IMG_7546.jpg" alt="Life drawing portrait study 5" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Long Pose Study 06" data-title="Long Pose Study 06" data-description="A longer observational study focused on form, shading and the overall structure of the pose.">
+                                            <img src="Life Drawing/IMG_7589.jpg" alt="Life drawing long pose study 6" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 07" data-title="Life Drawing 07" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7591.jpg" alt="Life drawing study 7" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 08" data-title="Life Drawing 08" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7608.jpg" alt="Life drawing study 8" loading="lazy">
+                                        </button>
+                                    </article>
+                                    <article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7611.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7613.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7823.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7617.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7824.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7663.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7656.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_8025.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_8026.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_8027.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7663.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7664.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7665.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7767.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7671.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7673.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7686.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7688.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7689.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7697.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7700.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7746.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7747.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7752.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7762.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7764.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7765.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7767.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7768.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7769.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7773.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7774.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7794.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7798.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7819.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+									<article class="drawing-card">
+                                        <button class="drawing-image-button" type="button" aria-label="Expand Life Drawing 09" data-title="Life Drawing 09" data-description="A life drawing study focused on form, gesture and movement.">
+                                            <img src="Life Drawing/IMG_7820.jpg" alt="Life drawing study 9" loading="lazy">
+                                        </button>
+                                    </article>
+                                </div>
+                            </section>
 
-								<style>
-									#personal-space .personal-photo {
-										float: right;
-										width: 36%;
-										max-width: 360px;
-										height: auto;
-										margin: 0.35em 0 1.5em 2em;
-										border-radius: 4px;
-									}
-									#personal-space p {
-										text-align: left;
-									}
-									#personal-space::after {
-										content: "";
-										display: block;
-										clear: both;
-									}
-									@media screen and (max-width: 736px) {
-										#personal-space .personal-photo {
-											width: 45%;
-											margin-left: 1em;
-										}
-									}
-								</style>
+                            <div class="drawing-lightbox" id="drawing-lightbox" role="dialog" aria-modal="true" aria-label="Expanded life drawing" aria-hidden="true">
+                                <button class="drawing-lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+                                <button class="drawing-lightbox-nav drawing-lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
+                                <button class="drawing-lightbox-nav drawing-lightbox-next" type="button" aria-label="Next image">&#8250;</button>
+                                <div class="drawing-lightbox-content">
+                                    <img id="drawing-lightbox-image" src="" alt="">
 
-								<img class="personal-photo" src="images/pic10.jpg" alt="Portrait of Ismael" />
-
-								<p>My name is Ismael Houfaf, I’m 22 years old, and I’m an aspiring animator with a lifelong dream of bringing characters and stories to life. My passion began as a child, reading comic books and imagining what it would be like if the characters could move beyond the pages. That same sense of wonder still inspires me today, reminding me why I fell in love with animation in the first place.</p>
-
-								<p>I was born and raised in France before moving to the United Arab Emirates, where I explored my artistic interests through fine arts and developed my English skills. This opened the door to continuing my education in the United Kingdom, where I earned a bachelor’s degree in Animation at Staffordshire University. Exploring every stage of the animation pipeline helped me discover my passion for character animation, while group projects taught me the importance of teamwork and collaboration.</p>
-
-								<p>I later completed a master’s degree in 2D Animation at the University of Hertfordshire, where I had the opportunity to focus on my own creative projects. Leading my original project, <em>Backroll</em>, challenged me to grow as both an artist and a storyteller, pushing me to explore new ideas and discover what I am capable of creating.</p>
-
-								<p>Although I have come a long way, I know this is only the beginning of my journey. There are still countless skills to develop and stories I want to share with the world. No matter the challenges ahead, I will continue to learn, improve, and give my all to every project. Above everything, I never want to lose the childhood wonder that first inspired me to become an animator, because bringing imagination to life is, and always will be, my dream.</p>
-							</section>
+                                </div>
+                            </div>
 
 							<!-- Section -->
 								<section>
@@ -133,7 +449,7 @@
 										</article>
 										<article>
 											<a href="Storyboard.html" class="image">
-												<img src="images/pic02.jpg" alt="" />
+												<img src="images/pic02.png" alt="" />
 												<div class="portfolio-overlay"><span>Storyboards</span></div>
 											</a>
 											<h3>Storyboards</h3>
@@ -143,7 +459,7 @@
 										</article>
 										<article>
 											<a href="Backgrounds.html" class="image">
-												<img src="images/pic03.jpg" alt="" />
+												<img src="images/pic03.png" alt="" />
 												<div class="portfolio-overlay"><span>Backgrounds</span></div>
 											</a>
 											<h3>Backgrounds</h3>										
@@ -153,7 +469,7 @@
 										</article>
 										<article>
 											<a href="Character Designs.html" class="image">
-												<img src="images/pic04.jpg" alt="" />
+												<img src="images/pic04.png" alt="" />
 												<div class="portfolio-overlay"><span>Character Designs</span></div>
 											</a>
 											<h3>Character Designs</h3>						
@@ -173,7 +489,7 @@
 										</article>
 										<article>
 											<a href="Personal Work.html" class="image">
-												<img src="images/pic06.jpg" alt="" />
+												<img src="images/pic06.png" alt="" />
 												<div class="portfolio-overlay"><span>Personal Work</span></div>
 											</a>
 											<h3>Personal Work</h3>
@@ -190,14 +506,6 @@
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -211,19 +519,19 @@
 												<li><a href="my cv.html">My CV</a></li>
 											</ul>
 										</li>
-										<li><a href="generic.html">2D Animations </a></li>
-										<li><a href="elements.html">Storyboards</a></li>
-										<li><a href="#">Backgrounds</a></li>
-										<li><a href="#">Character Designs</a></li>
-										<li><a href="#">Life Drawing</a></li>
-										<li><a href="#">Personal Work</a></li>
+										<li><a href="2D animations.html">2D Animations </a></li>
+										<li><a href="Storyboard.html">Storyboards</a></li>
+										<li><a href="Backgrounds.html">Backgrounds</a></li>
+										<li><a href="Character Designs.html">Character Designs</a></li>
+										<li><a href="Life Drawing.html">Life Drawing</a></li>
+										<li><a href="Personal Work.html">Personal Work</a></li>
 										<li>
 											<span class="opener">Projects</span>
 											<ul>
-												<li><a href="#">Backroll</a></li>
-												<li><a href="#">Knight Fight</a></li>
-												<li><a href="#">Bed Time Chase</a></li>
-												<li><a href="#">Shakespear In The Club</a></li>
+												<li><a href="Backroll.html">Backroll</a></li>
+												<li><a href="Knight Fight.html">Knight Fight</a></li>
+												<li><a href="Bed Time Chase.html">Bed Time Chase</a></li>
+												<li><a href="Shakespear In the Club.html">Shakespear In The Club</a></li>
 											</ul>
 										</li>
 								</nav>
@@ -235,15 +543,15 @@
 									</header>
 									<div class="mini-posts">
 										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a href="Backroll.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
 											<p>Independent 8 episode series aimed at ages 14 and up, about a man running out of time. (2026)</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<a href="Bed Time Chase.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
 											<p>University Project aimed at ages 6 and up, about an older brother struggling to put his sibling to sleep. (2023)</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<a href="Knight Fight.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
 											<p>University Project aimed at ages 18 and up, a medieval all out war against the forces of evil. (2023)</p>
 										</article>
 									</div>
@@ -259,8 +567,8 @@
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="#">ihoufaf.animation@gmail.com</a></li>
 										<li class="icon solid fa-phone">(+971) 58 998 0694</li>
-										<li class="icon solid fa-home">30 Rue De L'Avenir<br />
-										Clichy, 92110</li>
+										<li class="icon solid fa-home">France, Paris<br />
+										<li class="icon solid fa-home">United Arab Emirates, Dubai<br />
 									</ul>
 								</section>
 
@@ -280,6 +588,67 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+            <script>
+                (function () {
+                    const lightbox = document.getElementById('drawing-lightbox');
+                    if (!lightbox) return;
+
+                    const lightboxImage = document.getElementById('drawing-lightbox-image');
+                    const closeButton = lightbox.querySelector('.drawing-lightbox-close');
+                    const prevButton = lightbox.querySelector('.drawing-lightbox-prev');
+                    const nextButton = lightbox.querySelector('.drawing-lightbox-next');
+                    const imageButtons = Array.from(document.querySelectorAll('#life-drawing .drawing-image-button'));
+                    let currentIndex = 0;
+                    let previouslyFocused = null;
+
+                    function showImage(index) {
+                        currentIndex = (index + imageButtons.length) % imageButtons.length;
+                        const button = imageButtons[currentIndex];
+                        const image = button.querySelector('img');
+                        lightboxImage.src = image.src;
+                        lightboxImage.alt = image.alt;
+                    }
+
+                    function openLightbox(button) {
+                        previouslyFocused = button;
+                        showImage(imageButtons.indexOf(button));
+                        lightbox.classList.add('is-open');
+                        lightbox.setAttribute('aria-hidden', 'false');
+                        document.body.style.overflow = 'hidden';
+                        closeButton.focus();
+                    }
+
+                    function closeLightbox() {
+                        lightbox.classList.remove('is-open');
+                        lightbox.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                        window.setTimeout(function () {
+                            if (!lightbox.classList.contains('is-open')) lightboxImage.src = '';
+                        }, 350);
+                        if (previouslyFocused) previouslyFocused.focus();
+                    }
+
+                    imageButtons.forEach(function (button) {
+                        button.addEventListener('click', function () { openLightbox(button); });
+                    });
+                    closeButton.addEventListener('click', closeLightbox);
+                    prevButton.addEventListener('click', function () { showImage(currentIndex - 1); });
+                    nextButton.addEventListener('click', function () { showImage(currentIndex + 1); });
+
+                    lightbox.addEventListener('click', function (event) {
+                        if (event.target === lightbox) closeLightbox();
+                    });
+
+                    document.addEventListener('keydown', function (event) {
+                        if (!lightbox.classList.contains('is-open')) return;
+                        if (event.key === 'Escape') closeLightbox();
+                        if (event.key === 'ArrowLeft') showImage(currentIndex - 1);
+                        if (event.key === 'ArrowRight') showImage(currentIndex + 1);
+                    });
+                }());
+            </script>
 
 	</body>
 </html>
+
+```
