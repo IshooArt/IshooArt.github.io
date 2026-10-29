@@ -9,7 +9,6 @@
 		<meta charset="UTF-8">
 		<meta name="referrer" content="strict-origin-when-cross-origin">
 		<title>Ishoo Portfolio</title>
-		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
@@ -25,6 +24,7 @@
 			@media screen and (max-width: 980px) {
 				.animation-grid {
 					grid-template-columns: repeat(2, 1fr);
+					gap: 1rem;
 				}
 			}
 
@@ -32,6 +32,7 @@
 			@media screen and (max-width: 480px) {
 				.animation-grid {
 					grid-template-columns: 1fr;
+					gap: 1.25rem;
 				}
 			}
 
@@ -44,6 +45,7 @@
 				background-color: #000;
 				aspect-ratio: 16 / 9;
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				-webkit-tap-highlight-color: transparent;
 			}
 
 			.animation-card:hover {
@@ -56,19 +58,21 @@
 				height: 100%;
 				object-fit: cover;
 				display: block;
+				pointer-events: none; /* Prevents native iOS video controls from taking over grid thumbnails */
 			}
 
+			/* Overlay behavior */
 			.animation-card .overlay {
 				position: absolute;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+				background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.1));
 				color: #fff;
 				display: flex;
 				align-items: flex-end;
-				padding: 1.25rem;
+				padding: 1rem;
 				opacity: 0;
 				transition: opacity 0.3s ease;
 				pointer-events: none;
@@ -78,12 +82,20 @@
 				opacity: 1;
 			}
 
+			/* Keep title visible permanently on touch/mobile devices */
+			@media screen and (max-width: 768px) {
+				.animation-card .overlay {
+					opacity: 1;
+					background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 70%);
+				}
+			}
+
 			.animation-card .overlay h3 {
 				color: #ffffff;
 				margin: 0;
-				font-size: 1.2rem;
+				font-size: 1.1rem;
 				font-weight: 600;
-				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+				text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 			}
 
 			/* Modal Lightbox for Zoomed Video and Blurred Background */
@@ -93,7 +105,7 @@
 				left: 0;
 				width: 100vw;
 				height: 100vh;
-				background-color: rgba(0, 0, 0, 0.6);
+				background-color: rgba(0, 0, 0, 0.85);
 				backdrop-filter: blur(12px);
 				-webkit-backdrop-filter: blur(12px);
 				display: flex;
@@ -103,6 +115,8 @@
 				opacity: 0;
 				pointer-events: none;
 				transition: opacity 0.3s ease;
+				padding: 1rem;
+				box-sizing: border-box;
 			}
 
 			.video-modal.active {
@@ -112,10 +126,13 @@
 
 			.video-modal-content {
 				position: relative;
-				width: 90%;
-				max-width: 1100px;
-				transform: scale(0.8);
+				width: 100%;
+				max-width: 900px;
+				transform: scale(0.9);
 				transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
 			}
 
 			.video-modal.active .video-modal-content {
@@ -124,7 +141,7 @@
 
 			.video-modal-content video {
 				width: 100%;
-				max-height: 80vh;
+				max-height: 75vh;
 				border-radius: 8px;
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 				outline: none;
@@ -133,20 +150,32 @@
 
 			.video-modal-title {
 				color: #ffffff;
-				font-size: 1.5rem;
-				margin-top: 1rem;
+				font-size: 1.25rem;
+				margin-top: 0.75rem;
 				text-align: center;
 			}
 
 			.video-modal-close {
 				position: absolute;
-				top: -40px;
+				top: -45px;
 				right: 0;
 				color: #ffffff;
-				font-size: 2rem;
+				font-size: 2.5rem;
 				cursor: pointer;
 				line-height: 1;
 				transition: color 0.2s ease;
+				padding: 5px;
+			}
+
+			@media screen and (max-width: 480px) {
+				.video-modal-close {
+					top: -40px;
+					right: 5px;
+					font-size: 2.2rem;
+				}
+				.video-modal-title {
+					font-size: 1rem;
+				}
 			}
 
 			.video-modal-close:hover {
@@ -170,7 +199,7 @@
 				left: 0;
 				width: 100%;
 				height: 100%;
-				background: rgba(100, 100, 100, 0.4);
+				background: rgba(0, 0, 0, 0.4);
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -221,64 +250,64 @@
 
 								<div class="animation-grid">
 									<!-- Animation Item 1 -->
-									<div class="animation-card" onclick="openVideoModal('Backroll Animation Blocking (CSP).mp4', 'Backroll Animation Blocking (CSP)')">
-										<video src="Backroll Animation Blocking (CSP).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Backroll Animation Blocking (CSP).mp4', 'Backroll Animation Blocking (2025)')">
+										<video src="Backroll Animation Blocking (CSP).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
-											<h3>Backroll Animation Blocking (2025) </h3>
+											<h3>Backroll Animation Blocking (2025)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 2 -->
-									<div class="animation-card" onclick="openVideoModal('Hammer Practise (CSP).mp4', 'Hammer Practise (CSP)')">
-										<video src="Hammer Practise (CSP).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Hammer Practise (CSP).mp4', 'Hammer Practice (2025)')">
+										<video src="Hammer Practise (CSP).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Hammer Practice (2025)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 3 -->
-									<div class="animation-card" onclick="openVideoModal('Invincible (CSP).mp4', 'Invincible (CSP)')">
-										<video src="Invincible (CSP).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Invincible (CSP).mp4', 'Invincible (2025)')">
+										<video src="Invincible (CSP).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Invincible (2025)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 4 -->
-									<div class="animation-card" onclick="openVideoModal('Cup Jumping (Toon Boom Harmony).mp4', 'Cup Jumping (Toon Boom Harmony)')">
-										<video src="Cup Jumping (Toon Boom Harmony).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Cup Jumping (Toon Boom Harmony).mp4', 'Cup Jumping (2024)')">
+										<video src="Cup Jumping (Toon Boom Harmony).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Cup Jumping (2024)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 5 -->
-									<div class="animation-card" onclick="openVideoModal('Backroll Watch Animation Test (CSP).mp4', 'Backroll Watch Animation Test (CSP)')">
-										<video src="Backroll Watch Animation Test (CSP).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Backroll Watch Animation Test (CSP).mp4', 'Backroll Watch Animation Test (2026)')">
+										<video src="Backroll Watch Animation Test (CSP).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Backroll Watch Animation Test (2026)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 6 -->
-									<div class="animation-card" onclick="openVideoModal('Spider-Man Animation (CSP).mp4', 'Spider-Man Animation (CSP)')">
-										<video src="Spider-Man Animation (CSP).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Spider-Man Animation (CSP).mp4', 'Spider-Man Animation (2024)')">
+										<video src="Spider-Man Animation (CSP).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Spider-Man Animation (2024)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 7 -->
-									<div class="animation-card" onclick="openVideoModal('Greese Pencil Spider-Man (Blender).mp4', 'Greese Pencil Spider-Man (Blender)')">
-										<video src="Greese Pencil Spider-Man (Blender).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Greese Pencil Spider-Man (Blender).mp4', 'Greese Pencil Spider-Man (2025)')">
+										<video src="Greese Pencil Spider-Man (Blender).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Greese Pencil Spider-Man (2025)</h3>
 										</div>
 									</div>
 
 									<!-- Animation Item 8 -->
-									<div class="animation-card" onclick="openVideoModal('Backroll Lion Character Test (CSP).mp4', 'Backroll Lion Character Test (CSP)')">
-										<video src="Backroll Lion Character Test (CSP).mp4" preload="metadata" muted></video>
+									<div class="animation-card" onclick="openVideoModal('Backroll Lion Character Test (CSP).mp4', 'Backroll Lion Character Test (2025)')">
+										<video src="Backroll Lion Character Test (CSP).mp4#t=0.001" preload="auto" muted playsinline></video>
 										<div class="overlay">
 											<h3>Backroll Lion Character Test (2025)</h3>
 										</div>
@@ -361,14 +390,6 @@
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -383,7 +404,7 @@
 											</ul>
 										</li>
 										<li><a href="2D animations.html">2D Animations </a></li>
-										<li><a href="elements.html">Storyboards</a></li>
+										<li><a href="Storyboard.html">Storyboards</a></li>
 										<li><a href="Backgrounds.html">Backgrounds</a></li>
 										<li><a href="Character Designs.html">Character Designs</a></li>
 										<li><a href="Life Drawing.html">Life Drawing</a></li>
@@ -430,7 +451,8 @@
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="#">ihoufaf.animation@gmail.com</a></li>
 										<li class="icon solid fa-phone">(+971) 58 998 0694</li>
-										<li class="icon solid fa-home">30 Rue De L'Avenir<br />Clichy, 92110</li>
+										<li class="icon solid fa-home">France, Paris</li>
+										<li class="icon solid fa-home">United Arab Emirates, Dubai</li>
 									</ul>
 								</section>
 
@@ -448,7 +470,7 @@
 		<div id="videoModal" class="video-modal" onclick="closeVideoModal(event)">
 			<div class="video-modal-content">
 				<span class="video-modal-close" onclick="closeVideoModal(event, true)">&times;</span>
-				<video id="modalVideo" controls autoplay></video>
+				<video id="modalVideo" controls autoplay playsinline></video>
 				<div id="modalTitle" class="video-modal-title"></div>
 			</div>
 		</div>
@@ -468,7 +490,14 @@
 					modalVideo.src = videoSrc;
 					modalTitle.textContent = title;
 					modal.classList.add('active');
-					modalVideo.play();
+					
+					// Attempt autoplay safely for mobile touch handlers
+					const playPromise = modalVideo.play();
+					if (playPromise !== undefined) {
+						playPromise.catch(error => {
+							console.log('Autoplay blocked by browser policy:', error);
+						});
+					}
 				}
 
 				function closeVideoModal(event, forceClose = false) {

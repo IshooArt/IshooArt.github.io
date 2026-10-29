@@ -73,47 +73,618 @@
 									</ul>
 								</header>
 
-							<!-- Personal Space -->
-							<section id="personal-space">
-								<header class="major">
-									<h1>My Personal Space</h1>
+							<!-- Backgrounds Coverflow Gallery -->
+							<section id="background-gallery">
+								<header class="major gallery-header-clean">
+									<h1>Personal Work</h1>
 								</header>
 
-								<style>
-									#personal-space .personal-photo {
-										float: right;
-										width: 36%;
-										max-width: 360px;
-										height: auto;
-										margin: 0.35em 0 1.5em 2em;
-										border-radius: 4px;
-									}
-									#personal-space p {
-										text-align: left;
-									}
-									#personal-space::after {
-										content: "";
-										display: block;
-										clear: both;
-									}
-									@media screen and (max-width: 736px) {
-										#personal-space .personal-photo {
-											width: 45%;
-											margin-left: 1em;
-										}
-									}
-								</style>
+								<p class="gallery-intro">Personal Work I have worked on throughout the years. Scroll through the gallery, or click to learn more about them !</p>
 
-								<img class="personal-photo" src="images/pic10.jpg" alt="Portrait of Ismael" />
+								<div class="coverflow-container" aria-label="Background artwork coverflow gallery">
+									<!-- Simple Red Navigation Arrows without Oval Backgrounds -->
+									<button class="coverflow-nav coverflow-prev" type="button" aria-label="Previous Coverflow Item">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="15 18 9 12 15 6"></polyline>
+										</svg>
+									</button>
 
-								<p>My name is Ismael Houfaf, I’m 22 years old, and I’m an aspiring animator with a lifelong dream of bringing characters and stories to life. My passion began as a child, reading comic books and imagining what it would be like if the characters could move beyond the pages. That same sense of wonder still inspires me today, reminding me why I fell in love with animation in the first place.</p>
+									<div class="coverflow-track">
+										<button class="coverflow-card" type="button"
+											data-image="Personal Work/Makima2.png"
+											data-title="Makima Commission (2026)"
+											data-description="Makima commission from Chainsaw Man. (Made on Clip Studio Paint)">
+											<div class="card-media">
+												<img src="Personal Work/Makima2.png" alt="Isabelle Izem (Backroll-2026)">
+												<div class="reflection"></div>
+											</div>
+											<span class="card-title">Makima Commission (2026)</span>
+										</button>
 
-								<p>I was born and raised in France before moving to the United Arab Emirates, where I explored my artistic interests through fine arts and developed my English skills. This opened the door to continuing my education in the United Kingdom, where I earned a bachelor’s degree in Animation at Staffordshire University. Exploring every stage of the animation pipeline helped me discover my passion for character animation, while group projects taught me the importance of teamwork and collaboration.</p>
+										<button class="coverflow-card" type="button"
+											data-image="Personal Work/Ragdollcom.png"
+											data-title="Ragdoll Commission (2026)"
+											data-description="Ragdoll commission from My Hero Academia. (Made on Clip Studio Paint)">
+											<div class="card-media">
+												<img src="Personal Work/Ragdollcom.png" alt="Wilson and Willow Wilkins (Backroll-2026)">
+												<div class="reflection"></div>
+											</div>
+											<span class="card-title">Ragdoll Commission (2026)</span>
+										</button>
 
-								<p>I later completed a master’s degree in 2D Animation at the University of Hertfordshire, where I had the opportunity to focus on my own creative projects. Leading my original project, <em>Backroll</em>, challenged me to grow as both an artist and a storyteller, pushing me to explore new ideas and discover what I am capable of creating.</p>
+										<button class="coverflow-card" type="button"
+											data-image="Personal Work/album (4).png"
+											data-title="En Plein Air (2024)"
+											data-description="Album cover made in the impressionism style inspired by Claude Monet's paintings. (Made on Clip Studio Paint)">
+											<div class="card-media">
+												<img src="Personal Work/album (4).png" alt="En Plein Air (2024)">
+												<div class="reflection"></div>
+											</div>
+											<span class="card-title">En Plein Air (2024)</span>
+										</button>
 
-								<p>Although I have come a long way, I know this is only the beginning of my journey. There are still countless skills to develop and stories I want to share with the world. No matter the challenges ahead, I will continue to learn, improve, and give my all to every project. Above everything, I never want to lose the childhood wonder that first inspired me to become an animator, because bringing imagination to life is, and always will be, my dream.</p>
+										<button class="coverflow-card" type="button"
+											data-image="Personal Work/deku crop.png"
+											data-title="Deku Manga Panel (2024)"
+											data-description="Deku from My Hero Academia. (Made on Clip Studio Paint)">
+											<div class="card-media">
+												<img src="Personal Work/deku crop.png" alt="Deku Manga Panel (2024)">
+												<div class="reflection"></div>
+											</div>
+											<span class="card-title">Deku Manga Panel (2024)</span>
+										</button>
+										<!-- Duplicate coverflow-card buttons to add more images -->
+									</div>
+
+									<button class="coverflow-nav coverflow-next" type="button" aria-label="Next Coverflow Item">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+											<polyline points="9 18 15 12 9 6"></polyline>
+										</svg>
+									</button>
+								</div>
 							</section>
+
+							<!-- Large image viewer with smooth transition, flat red arrows, and red X close button -->
+							<div class="background-viewer" id="background-viewer" role="dialog"
+								aria-modal="true" aria-label="Background artwork viewer" aria-hidden="true">
+								<!-- Simple Red X Close Button -->
+								<button class="viewer-close" type="button" aria-label="Close image viewer">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<line x1="18" y1="6" x2="6" y2="18"></line>
+										<line x1="6" y1="6" x2="18" y2="18"></line>
+									</svg>
+								</button>
+
+								<!-- Previous Arrow (Flat Red SVG) -->
+								<button class="viewer-arrow viewer-prev" type="button" aria-label="Previous image">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<polyline points="15 18 9 12 15 6"></polyline>
+									</svg>
+								</button>
+
+								<div class="viewer-content">
+									<img class="viewer-image" id="viewer-image" src="" alt="">
+									<div class="viewer-caption">
+										<h2 id="viewer-title"></h2>
+										<p id="viewer-description"></p>
+									</div>
+								</div>
+
+								<!-- Next Arrow (Flat Red SVG) -->
+								<button class="viewer-arrow viewer-next" type="button" aria-label="Next image">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<polyline points="9 18 15 12 9 6"></polyline>
+									</svg>
+								</button>
+							</div>
+
+							<style>
+								#background-gallery .gallery-intro {
+									margin-bottom: 1.5em;
+								}
+
+								/* Remove red line/box under section header if present */
+								#background-gallery header.major::after,
+								#background-gallery header.major::before {
+									border-bottom: none !important;
+									background: none !important;
+								}
+
+								/* Stable Coverflow Gallery Container */
+								.coverflow-container {
+									position: relative;
+									width: 100%;
+									max-width: 100%;
+									height: 760px;
+									padding: 50px 0;
+									margin: 2rem 0 2rem;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									perspective: 1600px;
+									overflow: visible;
+									user-select: none;
+									border: none !important;
+									background: transparent !important;
+									box-shadow: none !important;
+								}
+
+								.coverflow-track {
+									position: relative;
+									width: 100%;
+									height: 100%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									transform-style: preserve-3d;
+									overflow: visible;
+								}
+
+								/* Massive widescreen landscape cards cleanly centered with standard Flexbox alignment */
+								.coverflow-card {
+									position: absolute;
+									width: min(820px, 92vw);
+									height: 580px;
+									padding: 0;
+									border: 0 !important;
+									background: transparent !important;
+									box-shadow: none !important;
+									cursor: pointer;
+									outline: none;
+									transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.45s ease, filter 0.45s ease;
+									will-change: transform, opacity;
+									display: flex;
+									flex-direction: column;
+									align-items: center;
+								}
+
+								.coverflow-card::before,
+								.coverflow-card::after {
+									display: none !important;
+								}
+
+								.coverflow-card .card-media {
+									position: relative;
+									width: 100%;
+									height: 480px;
+									border-radius: 12px;
+									overflow: visible;
+									background: transparent !important;
+									border: none !important;
+									box-shadow: none !important;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
+
+								.coverflow-card .card-media img {
+									display: block;
+									width: 100%;
+									height: 100%;
+									object-fit: contain;
+									background: transparent !important;
+									border: none !important;
+									outline: none !important;
+									box-shadow: none !important;
+									filter: none !important;
+								}
+
+								/* Remove image reflections and shadows */
+								.coverflow-card .card-media .reflection {
+									display: none !important;
+								}
+							.coverflow-card,
+							.coverflow-card .card-media,
+							.coverflow-card .card-media img {
+								box-shadow: none !important;
+								filter: none;
+							}
+
+								.coverflow-card .card-title {
+									margin-top: 18px;
+									font-weight: 700;
+									font-size: 1.45rem;
+									color: #333;
+									text-align: center;
+									opacity: 0;
+									border-bottom: none !important;
+									background: transparent !important;
+									transition: opacity 0.3s ease;
+								}
+
+								.coverflow-card.is-active .card-title {
+									opacity: 1;
+								}
+
+								/* Simple Red Navigation Arrow (No background circle/oval) */
+								.coverflow-nav {
+									position: absolute;
+									top: 50%;
+									transform: translateY(-50%);
+									z-index: 25;
+									background: transparent !important;
+									border: 0 !important;
+									padding: 0;
+									width: 56px;
+									height: 56px;
+									cursor: pointer;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									box-shadow: none !important;
+									outline: none;
+								}
+
+								.coverflow-nav svg {
+									width: 52px;
+									height: 52px;
+									stroke: #f56a6a;
+									transition: transform 0.2s ease, stroke 0.2s ease;
+								}
+
+								.coverflow-nav:hover svg {
+									stroke: #e05252;
+									transform: scale(1.2);
+								}
+
+								.coverflow-prev { left: 10px; }
+								.coverflow-next { right: 10px; }
+
+								/* Smooth Viewer Styling */
+								.background-viewer {
+									position: fixed;
+									inset: 0;
+									z-index: 10000;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									padding: 3rem 5rem;
+									background: rgba(0, 0, 0, 0.95);
+									opacity: 0;
+									visibility: hidden;
+									transition: opacity 0.35s ease, visibility 0.35s ease;
+								}
+
+								.background-viewer.is-open {
+									opacity: 1;
+									visibility: visible;
+								}
+
+								.background-viewer .viewer-content {
+									display: flex;
+									flex-direction: column;
+									align-items: center;
+									justify-content: center;
+									width: 100%;
+									height: 100%;
+									min-height: 0;
+									gap: 1rem;
+									transform: scale(0.92);
+									transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+								}
+
+								.background-viewer.is-open .viewer-content {
+									transform: scale(1);
+								}
+
+								.background-viewer .viewer-image {
+									display: block;
+									width: 100%;
+									height: min(72vh, 850px);
+									object-fit: contain;
+									background: transparent !important;
+									border: none !important;
+									box-shadow: none !important;
+									margin: 0;
+								}
+
+								.background-viewer .viewer-caption {
+									width: min(900px, 100%);
+									max-height: 22vh;
+									overflow-y: auto;
+									padding: 0.5rem 1rem;
+									color: #fff;
+									text-align: center;
+								}
+
+								.background-viewer .viewer-caption h2 {
+									color: #fff;
+									margin: 0 0 0.4rem;
+								}
+
+								.background-viewer .viewer-caption p {
+									margin: 0;
+									color: rgba(255, 255, 255, 0.88);
+								}
+
+								/* Flat Red Fullscreen Navigation Arrows */
+								.background-viewer .viewer-arrow {
+									position: absolute;
+									top: 50%;
+									transform: translateY(-50%);
+									z-index: 2;
+									background: transparent !important;
+									border: 0 !important;
+									padding: 0;
+									cursor: pointer;
+									width: 56px;
+									height: 56px;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									outline: none;
+									box-shadow: none !important;
+								}
+
+								.background-viewer .viewer-arrow svg {
+									width: 48px;
+									height: 48px;
+									stroke: #f56a6a;
+									transition: transform 0.2s ease, stroke 0.2s ease;
+								}
+
+								.background-viewer .viewer-arrow:hover svg {
+									stroke: #e05252;
+									transform: scale(1.2);
+								}
+
+								.background-viewer .viewer-prev { left: 1.5rem; }
+								.background-viewer .viewer-next { right: 1.5rem; }
+
+								/* Simple Red 'X' Close Button in Top Right */
+								.background-viewer .viewer-close {
+									position: absolute;
+									top: 1.5rem;
+									right: 1.5rem;
+									z-index: 10;
+									background: transparent !important;
+									border: 0 !important;
+									padding: 0;
+									cursor: pointer;
+									width: 48px;
+									height: 48px;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									outline: none;
+									box-shadow: none !important;
+								}
+
+								.background-viewer .viewer-close svg {
+									width: 38px;
+									height: 38px;
+									stroke: #f56a6a;
+									transition: transform 0.2s ease, stroke 0.2s ease;
+								}
+
+								.background-viewer .viewer-close:hover svg {
+									stroke: #e05252;
+									transform: scale(1.2);
+								}
+
+								body.viewer-open {
+									overflow: hidden;
+								}
+
+								/* Definitively remove shadows/reflections around gallery images */
+								.coverflow-card,
+								.coverflow-card::before,
+								.coverflow-card::after,
+								.coverflow-card .card-media,
+								.coverflow-card .card-media img,
+								.coverflow-card .reflection {
+									box-shadow: none !important;
+									filter: none;
+									-webkit-box-shadow: none !important;
+								}
+								.coverflow-card .reflection {
+									display: none !important;
+								}
+
+								@media screen and (max-width: 736px) {
+									.coverflow-container {
+										height: 480px;
+										padding: 30px 0;
+									}
+
+									.coverflow-card {
+										width: 330px;
+										height: 370px;
+									}
+
+									.coverflow-card .card-media {
+										height: 290px;
+									}
+
+									.coverflow-nav svg {
+										width: 32px;
+										height: 32px;
+									}
+
+									.background-viewer {
+										padding: 4rem 0.5rem 1rem;
+									}
+
+									.background-viewer .viewer-image {
+										height: 60vh;
+									}
+
+									.background-viewer .viewer-caption {
+										max-height: 25vh;
+										padding: 0.25rem 0.75rem;
+									}
+
+									.background-viewer .viewer-arrow svg {
+										width: 36px;
+										height: 36px;
+									}
+
+									.background-viewer .viewer-prev { left: 0.25rem; }
+									.background-viewer .viewer-next { right: 0.25rem; }
+
+									.background-viewer .viewer-close {
+										top: 0.75rem;
+										right: 0.75rem;
+									}
+									.background-viewer .viewer-close svg {
+										width: 32px;
+										height: 32px;
+									}
+								}
+							</style>
+
+							<script>
+								(function () {
+									const container = document.querySelector('.coverflow-container');
+									const cards = Array.from(document.querySelectorAll('.coverflow-card'));
+									const prevBtn = document.querySelector('.coverflow-prev');
+									const nextBtn = document.querySelector('.coverflow-next');
+
+									const viewer = document.getElementById('background-viewer');
+									const viewerImage = document.getElementById('viewer-image');
+									const viewerTitle = document.getElementById('viewer-title');
+									const viewerDescription = document.getElementById('viewer-description');
+									const viewerCloseButton = viewer.querySelector('.viewer-close');
+									const viewerPrevButton = viewer.querySelector('.viewer-prev');
+									const viewerNextButton = viewer.querySelector('.viewer-next');
+
+									if (!container || !cards.length) return;
+
+									let activeIndex = Math.floor(cards.length / 2);
+
+									function updateCoverflow() {
+										cards.forEach((card, index) => {
+											const offset = index - activeIndex;
+											const absOffset = Math.abs(offset);
+
+											if (offset === 0) {
+												// Center (Active) card - Perfectly centered with standard translate/scale
+												card.style.transform = `translateX(0) translateZ(140px) rotateY(0deg) scale(1.12)`;
+												card.style.opacity = '1';
+												card.style.zIndex = '10';
+												card.style.filter = 'none';
+												card.classList.add('is-active');
+											} else {
+												// Side cards offset cleanly in 3D space from center
+												const direction = offset > 0 ? 1 : -1;
+												const translateX = offset * 340 + (direction * 40);
+												const rotateY = direction * -35;
+												const scale = Math.max(0.45, 1 - absOffset * 0.18);
+
+												card.style.transform = `translateX(${translateX}px) translateZ(-120px) rotateY(${rotateY}deg) scale(${scale})`;
+												card.style.opacity = absOffset > 2 ? '0' : '0.45';
+												card.style.zIndex = `${10 - absOffset}`;
+												card.style.filter = 'brightness(0.55)';
+												card.classList.remove('is-active');
+											}
+										});
+									}
+
+									function setActiveIndex(index) {
+										activeIndex = (index + cards.length) % cards.length;
+										updateCoverflow();
+									}
+
+									// Card click handler
+									cards.forEach((card, index) => {
+										card.addEventListener('click', function () {
+											if (index === activeIndex) {
+												openViewer(index);
+											} else {
+												setActiveIndex(index);
+											}
+										});
+									});
+
+									// Coverflow navigation buttons
+									if (prevBtn) prevBtn.addEventListener('click', () => setActiveIndex(activeIndex - 1));
+									if (nextBtn) nextBtn.addEventListener('click', () => setActiveIndex(activeIndex + 1));
+
+									// Touch swipe for coverflow
+									let startX = 0;
+									container.addEventListener('touchstart', (e) => {
+										startX = e.touches[0].clientX;
+									}, { passive: true });
+
+									container.addEventListener('touchend', (e) => {
+										const endX = e.changedTouches[0].clientX;
+										const diff = startX - endX;
+										if (Math.abs(diff) > 40) {
+											if (diff > 0) setActiveIndex(activeIndex + 1);
+											else setActiveIndex(activeIndex - 1);
+										}
+									}, { passive: true });
+
+									// Lightbox Modal Functions
+									function showImage(index) {
+										if (!cards.length) return;
+										const card = cards[index];
+										viewerImage.src = card.dataset.image;
+										viewerImage.alt = card.querySelector('img').alt || card.dataset.title || '';
+										viewerTitle.textContent = card.dataset.title || '';
+										viewerDescription.textContent = card.dataset.description || '';
+									}
+
+									function openViewer(index) {
+										showImage(index);
+										viewer.classList.add('is-open');
+										viewer.setAttribute('aria-hidden', 'false');
+										document.body.classList.add('viewer-open');
+									}
+
+									function closeViewer() {
+										viewer.classList.remove('is-open');
+										viewer.setAttribute('aria-hidden', 'true');
+										document.body.classList.remove('viewer-open');
+										viewerImage.src = '';
+									}
+
+									if (viewerCloseButton) {
+										viewerCloseButton.addEventListener('click', function (e) {
+											e.stopPropagation();
+											closeViewer();
+										});
+									}
+
+									viewerPrevButton.addEventListener('click', function (e) {
+										e.stopPropagation();
+										setActiveIndex(activeIndex - 1);
+										showImage(activeIndex);
+									});
+									viewerNextButton.addEventListener('click', function (e) {
+										e.stopPropagation();
+										setActiveIndex(activeIndex + 1);
+										showImage(activeIndex);
+									});
+
+									// Click anywhere outside image content to close
+									viewer.addEventListener('click', function (event) {
+										if (event.target === viewer || event.target.closest('.viewer-content') === null) {
+											closeViewer();
+										}
+									});
+
+									document.addEventListener('keydown', function (event) {
+										if (viewer.classList.contains('is-open')) {
+											if (event.key === 'Escape') closeViewer();
+											if (event.key === 'ArrowLeft') {
+												setActiveIndex(activeIndex - 1);
+												showImage(activeIndex);
+											}
+											if (event.key === 'ArrowRight') {
+												setActiveIndex(activeIndex + 1);
+												showImage(activeIndex);
+											}
+										} else {
+											if (event.key === 'ArrowLeft') setActiveIndex(activeIndex - 1);
+											if (event.key === 'ArrowRight') setActiveIndex(activeIndex + 1);
+										}
+									});
+
+									// Initial setup
+									updateCoverflow();
+								})();
+							</script>
 
 							<!-- Section -->
 								<section>
@@ -133,7 +704,7 @@
 										</article>
 										<article>
 											<a href="Storyboard.html" class="image">
-												<img src="images/pic02.jpg" alt="" />
+												<img src="images/pic02.png" alt="" />
 												<div class="portfolio-overlay"><span>Storyboards</span></div>
 											</a>
 											<h3>Storyboards</h3>
@@ -143,7 +714,7 @@
 										</article>
 										<article>
 											<a href="Backgrounds.html" class="image">
-												<img src="images/pic03.jpg" alt="" />
+												<img src="images/pic03.png" alt="" />
 												<div class="portfolio-overlay"><span>Backgrounds</span></div>
 											</a>
 											<h3>Backgrounds</h3>										
@@ -153,7 +724,7 @@
 										</article>
 										<article>
 											<a href="Character Designs.html" class="image">
-												<img src="images/pic04.jpg" alt="" />
+												<img src="images/pic04.png" alt="" />
 												<div class="portfolio-overlay"><span>Character Designs</span></div>
 											</a>
 											<h3>Character Designs</h3>						
@@ -173,7 +744,7 @@
 										</article>
 										<article>
 											<a href="Personal Work.html" class="image">
-												<img src="images/pic06.jpg" alt="" />
+												<img src="images/pic06.png" alt="" />
 												<div class="portfolio-overlay"><span>Personal Work</span></div>
 											</a>
 											<h3>Personal Work</h3>
@@ -187,17 +758,10 @@
 						</div>
 					</div>
 
+
 				<!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
-
-							<!-- Search -->
-								<section id="search" class="alt">
-									<form method="post" action="#">
-										<input type="text" name="query" id="query" placeholder="Search" />
-									</form>
-								</section>
-
 							<!-- Menu -->
 								<nav id="menu">
 									<header class="major">
@@ -211,19 +775,19 @@
 												<li><a href="my cv.html">My CV</a></li>
 											</ul>
 										</li>
-										<li><a href="generic.html">2D Animations </a></li>
-										<li><a href="elements.html">Storyboards</a></li>
-										<li><a href="#">Backgrounds</a></li>
-										<li><a href="#">Character Designs</a></li>
-										<li><a href="#">Life Drawing</a></li>
-										<li><a href="#">Personal Work</a></li>
+										<li><a href="2D animations.html">2D Animations </a></li>
+										<li><a href="Storyboard.html">Storyboards</a></li>
+										<li><a href="Backgrounds.html">Backgrounds</a></li>
+										<li><a href="Character Designs.html">Character Designs</a></li>
+										<li><a href="Life Drawing.html">Life Drawing</a></li>
+										<li><a href="Personal Work.html">Personal Work</a></li>
 										<li>
 											<span class="opener">Projects</span>
 											<ul>
-												<li><a href="#">Backroll</a></li>
-												<li><a href="#">Knight Fight</a></li>
-												<li><a href="#">Bed Time Chase</a></li>
-												<li><a href="#">Shakespear In The Club</a></li>
+												<li><a href="Backroll.html">Backroll</a></li>
+												<li><a href="Knight Fight.html">Knight Fight</a></li>
+												<li><a href="Bed Time Chase.html">Bed Time Chase</a></li>
+												<li><a href="Shakespear In the Club.html">Shakespear In The Club</a></li>
 											</ul>
 										</li>
 								</nav>
@@ -235,15 +799,15 @@
 									</header>
 									<div class="mini-posts">
 										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a href="Backroll.html" class="image"><img src="images/pic07.jpg" alt="" /></a>
 											<p>Independent 8 episode series aimed at ages 14 and up, about a man running out of time. (2026)</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+											<a href="Bed Time Chase.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
 											<p>University Project aimed at ages 6 and up, about an older brother struggling to put his sibling to sleep. (2023)</p>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+											<a href="Knight Fight.html" class="image"><img src="images/pic09.jpg" alt="" /></a>
 											<p>University Project aimed at ages 18 and up, a medieval all out war against the forces of evil. (2023)</p>
 										</article>
 									</div>
@@ -259,8 +823,8 @@
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="#">ihoufaf.animation@gmail.com</a></li>
 										<li class="icon solid fa-phone">(+971) 58 998 0694</li>
-										<li class="icon solid fa-home">30 Rue De L'Avenir<br />
-										Clichy, 92110</li>
+										<li class="icon solid fa-home">France, Paris<br />
+										<li class="icon solid fa-home">United Arab Emirates, Dubai<br />
 									</ul>
 								</section>
 
@@ -283,3 +847,5 @@
 
 	</body>
 </html>
+
+```
